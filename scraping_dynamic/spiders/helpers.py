@@ -1,8 +1,4 @@
-import scrapy
-import re
 from scrapy_selenium import SeleniumRequest
-from scrapy import Request
-import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
