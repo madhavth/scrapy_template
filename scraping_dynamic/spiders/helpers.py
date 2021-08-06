@@ -14,4 +14,4 @@ def get_text(element, selector):
 
 
 def get_link(element, selector):
-    return element.css("a.btn.btn-primary.btn-user").attrib["href"]
+    return element.css(selector).attrib["href"]
