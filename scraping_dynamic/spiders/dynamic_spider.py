@@ -1,11 +1,9 @@
 import scrapy
 import re
-from scrapy_selenium import SeleniumRequest
 from scrapy import Request
 import time
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from . import helpers
+from scrapy_headless.request import HeadlessRequest
 
 class DynamicSpider(scrapy.Spider):
     name = 'dynamic'
@@ -37,12 +35,8 @@ class DynamicSpider(scrapy.Spider):
 
     def get_down_link(self, response):
         down_page = response.css("#download-button-link").attrib["href"]
-        yield helpers.selenium_wait_request(
-            url = self.main_url +down_page,
-            callback = self.final_download_link,
-            wait_time=10,
-            selector= 'a.btn.btn-primary.btn-user'
-        )
+        yield Request(self.main_url+down_page,
+         callback = self.final_download_link)
     
 
     def final_download_link(self, response):
